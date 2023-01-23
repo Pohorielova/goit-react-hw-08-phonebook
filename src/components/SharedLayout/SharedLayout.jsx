@@ -11,13 +11,14 @@ import authSelectors from './../../redux/auth/auth-selectors';
 
 export const SharedLayout = () => {
   const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
-  console.log('is logged', isLoggedIn);
+
   return (
     <Box>
       <Box as="header" borderBottom="2px solid orange">
         <Box as="nav" display="flex" gridGap={15}>
           <NavItem to="/">Home</NavItem>
-          <NavItem to="phonebook">PhoneBook</NavItem>
+          {isLoggedIn && <NavItem to="phonebook">PhoneBook</NavItem>}
+
           {/* <AuthNav />
           <UserMenu /> */}
           {isLoggedIn ? <UserMenu /> : <AuthNav />}
