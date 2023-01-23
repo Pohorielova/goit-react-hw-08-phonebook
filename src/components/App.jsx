@@ -23,7 +23,7 @@ export const App = () => {
   return (
     <Box as="div" pl={15} pr={15}>
       {isFetchingCurrentUser ? (
-        <h1>Показываем React Skeleton</h1>
+        <p>Loading...</p>
       ) : (
         <>
           <Routes>

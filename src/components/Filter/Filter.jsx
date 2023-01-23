@@ -1,15 +1,25 @@
-import { Box } from 'components/Box';
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Input, Label } from './Filter.styled';
+import TextField from '@mui/material/TextField';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+const theme = createTheme();
 
 const Filter = ({ value, onChange }) => (
-  <Box as="div" flexDirection="column">
-    <Label htmlFor="" >
-      Filter{' '}
-    </Label>
-    <Input type="text" value={value} onChange={onChange} />
-  </Box>
+  <ThemeProvider theme={theme}>
+    <TextField
+      variant="outlined"
+      margin="normal"
+      fullWidth
+      label="Filter"
+      type="text"
+      value={value}
+      onChange={onChange}
+      sx={{
+        width: 300,
+      }}
+    />
+  </ThemeProvider>
 );
 export default Filter;
 Filter.propTypes = {

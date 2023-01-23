@@ -6,7 +6,7 @@ import {
   getError,
   getFilter,
   getItems,
-} from '../../redux/appSlice';
+} from '../../redux/contacts/contacts-slice';
 import { Box } from './../Box';
 import shortid from 'shortid';
 import Form from './../Form/Form';
@@ -19,7 +19,7 @@ import {
   addContact,
   fetchContacts,
   deleteContact,
-} from './../../redux/operations';
+} from '../../redux/contacts/contacts-operations';
 
 export default function PhoneBook() {
   const dispatch = useDispatch();
@@ -67,9 +67,6 @@ export default function PhoneBook() {
 
   return (
     <Box as="div" p={15}>
-      <Box as="h1" color="white" textAlign="center">
-        PhoneBook:
-      </Box>
       <Box as="div" display="flex" alignItems="center">
         <Box as="div" display="flex" flexDirection="column" width={320}>
           <Form onSubmitForm={addName} contacts={visibleContacts} />

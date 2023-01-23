@@ -14,13 +14,10 @@ export const SharedLayout = () => {
 
   return (
     <Box>
-      <Box as="header" borderBottom="2px solid orange">
+      <Box as="header" borderBottom="2px solid #1976d2">
         <Box as="nav" display="flex" gridGap={15}>
           <NavItem to="/">Home</NavItem>
           {isLoggedIn && <NavItem to="phonebook">PhoneBook</NavItem>}
-
-          {/* <AuthNav />
-          <UserMenu /> */}
           {isLoggedIn ? <UserMenu /> : <AuthNav />}
         </Box>
       </Box>
@@ -51,10 +48,10 @@ const NavItem = styled(NavLink)`
   padding: 20px 0;
 
   &.active {
-    color: orange;
+    color: #1976d2;
   }
 
   :hover:not(.active) {
-    color: deeppink;
+    color: #ba68c8;
   }
 `;

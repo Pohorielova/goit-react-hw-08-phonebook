@@ -1,8 +1,9 @@
 import { createAction, createSlice } from '@reduxjs/toolkit';
-
-// import { persistReducer } from 'redux-persist';
-// import storage from 'redux-persist/lib/storage';
-import { fetchContacts, addContact, deleteContact } from './operations';
+import {
+  fetchContacts,
+  addContact,
+  deleteContact,
+} from './contacts-operations';
 
 const InitialState = {
   contacts: {
@@ -58,16 +59,6 @@ const appSlice = createSlice({
     },
   },
 });
-
-// const persistConfig = {
-//   key: 'phonebook',
-//   storage,
-// };
-
-// export const persistedAppReducer = persistReducer(
-//   persistConfig,
-//   appSlice.reducer
-// );
 
 export const appReducer = appSlice.reducer;
 
