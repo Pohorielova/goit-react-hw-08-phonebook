@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Input = styled.input`
-  background-color: #ffffff;
+  background-color: #af7b7b;
   /* border-radius: 6px;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; */
   width: 300px;
@@ -15,7 +15,7 @@ export const Label = styled.label`
   font-weight: 700;
   font-size: 20px;
   margin-bottom: 10px;
-  color: white;
+  color: #272424;
 `;
 export const Btn = styled.button`
   background-color: orange;
@@ -23,7 +23,7 @@ export const Btn = styled.button`
   /* border-radius: 6px;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; */
 
-  color: white;
+  color: #100f0f;
   font-weight: 700;
   font-size: 20px;
   padding: 10px;

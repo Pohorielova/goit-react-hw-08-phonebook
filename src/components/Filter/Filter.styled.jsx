@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Input = styled.input`
-  background-color: #ffffff;
+  background-color: #884f4f;
   /* border-radius: 6px;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; */
   width: 300px;
@@ -13,5 +13,5 @@ export const Input = styled.input`
 export const Label = styled.label`
   font-weight: 700;
   font-size: 20px;
-  color: white;
+  color: #1d1a1a;
 `;

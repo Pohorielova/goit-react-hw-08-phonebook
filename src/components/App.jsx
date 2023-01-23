@@ -1,9 +1,10 @@
 import { Routes, Route } from 'react-router-dom';
-import { lazy } from 'react';
-
+import { lazy, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { Box } from 'components/Box';
 import { SharedLayout } from './SharedLayout/SharedLayout';
 import { HomePage } from './HomePage/HomePage';
+import { authOperations } from 'redux/auth';
 
 const Login = lazy(() => import('./Login/Login'));
 const Register = lazy(() => import('./Register/Register'));
@@ -13,6 +14,11 @@ const PhoneBook = lazy(() => import('./PhoneBook/PhoneBook'));
 // const Reviews = lazy(() => import('./Reviews/Reviews'));
 
 export const App = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(authOperations.fetchCurrentUser());
+  }, [dispatch]);
   return (
     <Box as="div" pl={15} pr={15}>
       <Routes>
