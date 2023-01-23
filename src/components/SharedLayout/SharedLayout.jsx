@@ -4,16 +4,23 @@ import { Box } from 'components/Box';
 import styled from 'styled-components';
 import { ColorRing } from 'react-loader-spinner';
 import { UserMenu } from 'components/UserMenu/UserMenu';
+import { useSelector } from 'react-redux';
+
+import AuthNav from './../AuthNav';
+import authSelectors from './../../redux/auth/auth-selectors';
+
 export const SharedLayout = () => {
+  const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
+  console.log('is logged', isLoggedIn);
   return (
     <Box>
       <Box as="header" borderBottom="2px solid orange">
         <Box as="nav" display="flex" gridGap={15}>
           <NavItem to="/">Home</NavItem>
-          <NavItem to="register">Register</NavItem>
-          <NavItem to="login">Login</NavItem>
           <NavItem to="phonebook">PhoneBook</NavItem>
-          <UserMenu />
+          {/* <AuthNav />
+          <UserMenu /> */}
+          {isLoggedIn ? <UserMenu /> : <AuthNav />}
         </Box>
       </Box>
       <Suspense
