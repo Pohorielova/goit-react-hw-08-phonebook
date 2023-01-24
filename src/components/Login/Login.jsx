@@ -12,7 +12,8 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { authOperations } from 'redux/auth';
-
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 function Copyright(props) {
   return (
     <Typography
@@ -51,7 +52,14 @@ export default function SignIn() {
 
   const handleSubmit = e => {
     e.preventDefault();
+    if (password === '' || email === '') {
+      return toast.error('Please fill in all the fields!');
+    }
+    if (password.length < 7) {
+      return toast.error('Password must contain at least 7 characters');
+    }
     dispatch(authOperations.logIn({ email, password }));
+    toast.success('Welcome!');
     setEmail('');
     setPassword('');
   };
@@ -103,6 +111,7 @@ export default function SignIn() {
               value={password}
               autoComplete="current-password"
               onChange={handleChange}
+              minLength="7"
             />
             <Button
               type="submit"
@@ -112,6 +121,7 @@ export default function SignIn() {
             >
               Sign In
             </Button>
+            <ToastContainer />
           </Box>
         </Box>
         <Copyright sx={{ mt: 8, mb: 4 }} />

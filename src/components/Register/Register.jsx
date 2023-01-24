@@ -6,6 +6,7 @@ import TextField from '@mui/material/TextField';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
+
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
@@ -13,6 +14,8 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { authOperations } from 'redux/auth';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Copyright(props) {
   return (
@@ -55,6 +58,13 @@ export default function SignUp() {
 
   const handleSubmit = e => {
     e.preventDefault();
+
+    if (name === '' || password === '' || email === '') {
+      return toast.error('Please fill in all the fields!');
+    }
+    if (password.length < 7) {
+      return toast.error('Password must contain at least 7 characters');
+    }
     dispatch(
       authOperations.register({
         name,
@@ -62,6 +72,7 @@ export default function SignUp() {
         password,
       })
     );
+    toast.success('Nice to meet you!');
     setName('');
     setEmail('');
     setPassword('');
@@ -103,6 +114,8 @@ export default function SignUp() {
                   value={name}
                   onChange={handleChange}
                   autoFocus
+                  pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+                  title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
                 />
               </Grid>
               <Grid item xs={12}>
@@ -128,6 +141,7 @@ export default function SignUp() {
                   value={password}
                   autoComplete="new-password"
                   onChange={handleChange}
+                  minLength="7"
                 />
               </Grid>
             </Grid>
@@ -139,6 +153,7 @@ export default function SignUp() {
             >
               Sign Up
             </Button>
+            <ToastContainer />
           </Box>
         </Box>
         <Copyright sx={{ mt: 5 }} />

@@ -4,7 +4,8 @@ import { PropTypes } from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { addContact } from '../../redux/contacts/contacts-operations';
 import Button from '@mui/material/Button';
-
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 
@@ -29,6 +30,7 @@ export default function Form({ onSubmitForm }) {
     e.preventDefault();
     const { name, number } = data;
     dispatch(addContact({ name, number }));
+    toast('🦄 Contact saved successfully!');
     setData({ name: '', number: '' });
   };
 
@@ -78,6 +80,7 @@ export default function Form({ onSubmitForm }) {
           >
             Add contact
           </Button>
+          <ToastContainer />
         </Box>
       </Box>
     </ThemeProvider>

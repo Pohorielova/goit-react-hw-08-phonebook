@@ -25,22 +25,25 @@ const register = createAsyncThunk(
   }
 );
 
-const logIn = createAsyncThunk('auth/login', async credentials => {
-  try {
-    const { data } = await axios.post('/users/login', credentials);
-    token.set(data.token);
-    return data;
-  } catch (error) {
-    // return reject(error.message);
+const logIn = createAsyncThunk(
+  'auth/login',
+  async (credentials, { reject }) => {
+    try {
+      const { data } = await axios.post('/users/login', credentials);
+      token.set(data.token);
+      return data;
+    } catch (error) {
+      return reject(error.message);
+    }
   }
-});
+);
 
-const logOut = createAsyncThunk('auth/logout', async () => {
+const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   try {
     await axios.post('/users/logout');
     token.unset();
   } catch (error) {
-    // TODO: Добавить обработку ошибки error.message
+    return thunkAPI.rejectWithValue(error.message);
   }
 });
 const fetchCurrentUser = createAsyncThunk(
@@ -59,7 +62,7 @@ const fetchCurrentUser = createAsyncThunk(
       const { data } = await axios.get('/users/current');
       return data;
     } catch (error) {
-      // TODO: Добавить обработку ошибки error.message
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
